@@ -138,7 +138,29 @@ body {
 .card-hover-zoom:hover img {
   transform: scale(1.05);
 }
+/* menu utility classes */
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+/* Add these utility classes */
+.ambient-shadow {
+  box-shadow: 0 12px 32px -4px rgba(66, 42, 38, 0.06);
+}
 
+.form-focus:focus {
+  outline: none;
+  border-color: #a23f00;
+  box-shadow: 0 0 0 4px rgba(162, 63, 0, 0.1);
+}
+
+/* Scroll margin for sections */
+.scroll-mt-\[150px\] {
+  scroll-margin-top: 150px;
+}
 /* Mobile Menu Styles */
 .perspective-container {
   perspective: 2000px;
@@ -175,4 +197,13 @@ body {
 
 .animate-float {
   animation: float 4s ease-in-out infinite;
+}
+/* Sticky nav transition */
+.sticky {
+  transition: box-shadow 0.3s ease;
+}
+
+/* Scroll margin for anchor links */
+.scroll-mt-\[150px\] {
+  scroll-margin-top: 150px;
 }

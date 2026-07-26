@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Button from "../shared/Button";
 
 const Navbar: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,12 +16,7 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: "Menu", path: "/menu" },
-    { name: "About", path: "/about" },
-    { name: "Gallery", path: "/gallery" },
-    { name: "Location", path: "/location" },
-  ];
+  const navLinks = [{ name: "Menu", path: "/menu" }];
 
   return (
     <header
@@ -64,6 +60,7 @@ const Navbar: React.FC = () => {
         <Button
           variant="primary"
           className="hidden md:inline-block px-6 py-2.5 rounded-xl"
+          onClick={() => navigate("/reservations")}
         >
           Reserve a Table
         </Button>
