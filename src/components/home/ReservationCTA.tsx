@@ -99,7 +99,7 @@ const ReservationCTA: React.FC = () => {
         {/* Animated Header */}
         <h1
           ref={headerRef}
-          className="font-display-lg  text-3xl  text-display-lg-mobile md:text-display-lg text-on-background mb-6 leading-[1.1]"
+          className="font-display-lg  text-2xl  text-display-lg-mobile md:text-display-lg text-on-background mb-6 leading-[1.1]"
         >
           {headerText.split("").map((char, index) => (
             <span
