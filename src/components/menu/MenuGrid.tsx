@@ -9,7 +9,6 @@ interface MenuGridProps {
 }
 
 const MenuGrid: React.FC<MenuGridProps> = ({ items, categoryId }) => {
-  // Find the featured item (if any)
   const featuredItem = items.find((item) => item.isFeature);
   const regularItems = items.filter((item) => !item.isFeature);
 
@@ -27,13 +26,13 @@ const MenuGrid: React.FC<MenuGridProps> = ({ items, categoryId }) => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
-        {/* Regular items */}
-        {regularItems.map((item) => (
-          <MenuItemCard key={item.id} item={item} />
+        {regularItems.map((item, index) => (
+          <MenuItemCard key={item.id} item={item} index={index} />
         ))}
 
-        {/* Featured item (spans 2 columns) */}
-        {featuredItem && <MenuFeatureCard item={featuredItem} />}
+        {featuredItem && (
+          <MenuFeatureCard item={featuredItem} index={regularItems.length} />
+        )}
       </div>
     </section>
   );

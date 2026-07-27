@@ -9,21 +9,40 @@ gsap.registerPlugin(ScrollTrigger);
 const SignatureDishes: React.FC = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const cardsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const headingRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      // Heading animation
+      gsap.fromTo(
+        headingRef.current,
+        { opacity: 0, y: 30 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          scrollTrigger: {
+            trigger: headingRef.current,
+            start: "top bottom-=100",
+            toggleActions: "play none none reverse",
+          },
+        },
+      );
+
+      // Cards stagger animation
       cardsRef.current.forEach((card, index) => {
         gsap.fromTo(
           card,
-          { opacity: 0, y: 50 },
+          { opacity: 0, y: 50, scale: 0.95 },
           {
             opacity: 1,
             y: 0,
+            scale: 1,
             duration: 0.8,
             delay: index * 0.15,
             scrollTrigger: {
               trigger: card,
-              start: "top bottom-=100",
+              start: "top bottom-=80",
               toggleActions: "play none none reverse",
             },
           },
@@ -37,10 +56,12 @@ const SignatureDishes: React.FC = () => {
   return (
     <section ref={sectionRef} className="py-stack-lg bg-surface-container-low">
       <div className="max-w-container-max mx-auto px-gutter md:px-margin-desktop">
-        <SectionHeading
-          badge="Signature Experiences"
-          title="Crafted With Intent"
-        />
+        <div ref={headingRef}>
+          <SectionHeading
+            badge="Signature Experiences"
+            title="Crafted With Intent"
+          />
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {signatureDishes.map((dish, index) => (
@@ -56,12 +77,7 @@ const SignatureDishes: React.FC = () => {
                 src={dish.image}
                 alt={dish.title}
               />
-              {dish.isFeatured && (
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-              )}
-              {!dish.isFeatured && (
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
               <div className="absolute bottom-0 left-0 p-8">
                 {dish.isFeatured && (
                   <span className="font-label-sm text-secondary-fixed bg-secondary/20 backdrop-blur-md px-3 py-1 rounded-lg">

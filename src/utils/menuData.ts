@@ -77,10 +77,10 @@ export const menuItems: MenuItem[] = [
 
 export const categories = [
   { id: "jollof", label: "Jollof" },
-  { id: "rice", label: "Rice Dishes" },
+  // { id: "rice", label: "Rice Dishes" },
   { id: "soups", label: "Soups" },
-  { id: "swallows", label: "Swallows" },
-  { id: "grills", label: "Grills" },
-  { id: "drinks", label: "Drinks" },
-  { id: "desserts", label: "Desserts" },
+  // { id: "swallows", label: "Swallows" },
+  // { id: "grills", label: "Grills" },
+  // { id: "drinks", label: "Drinks" },
+  // { id: "desserts", label: "Desserts" },
 ];

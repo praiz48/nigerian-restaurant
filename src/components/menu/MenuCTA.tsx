@@ -1,10 +1,58 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const MenuCTA: React.FC = () => {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const textRef = useRef<HTMLDivElement>(null);
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        textRef.current,
+        { opacity: 0, x: -50 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          scrollTrigger: {
+            trigger: textRef.current,
+            start: "top bottom-=80",
+            toggleActions: "play none none reverse",
+          },
+        },
+      );
+
+      gsap.fromTo(
+        imageRef.current,
+        { opacity: 0, x: 50, scale: 0.95 },
+        {
+          opacity: 1,
+          x: 0,
+          scale: 1,
+          duration: 1.2,
+          scrollTrigger: {
+            trigger: imageRef.current,
+            start: "top bottom-=80",
+            toggleActions: "play none none reverse",
+          },
+        },
+      );
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <section className="bg-inverse-surface text-inverse-on-surface py-stack-lg mt-stack-lg">
+    <section
+      ref={sectionRef}
+      className="bg-inverse-surface text-inverse-on-surface py-stack-lg mt-stack-lg"
+    >
       <div className="max-w-container-max mx-auto px-gutter grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div>
+        <div ref={textRef}>
           <h2 className="font-display-lg text-display-lg-mobile md:text-display-lg mb-6">
             Experience the Legacy
           </h2>
@@ -21,7 +69,10 @@ const MenuCTA: React.FC = () => {
             </button>
           </div>
         </div>
-        <div className="relative aspect-video rounded-2xl overflow-hidden group">
+        <div
+          ref={imageRef}
+          className="relative aspect-video rounded-2xl overflow-hidden group"
+        >
           <img
             className="w-full h-full object-cover"
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5qq_0EsdRBBkAQMzHoo47DbA9U7i4vjEJd1unSShFJNd8MmOvjKT1GTYe1ugwDlocdUzTtFXUZ7BUN_cEGkULZFwE9nt83_iEtl1a-U4EuA3iucf2C7E0i3NofOjgyGcXNyAuL3QQR5JrlgxMY9A9AZdUnr2ksiYYucotxJwLWI8rxJ4N6jB_ViHea4whnS089X4Xbz8wAg7oylfynKxLTt1DU09ZRY7RXzphJEqgCMYt-HMFhWnSwULHRGz3z6Bi_r5GITJJ1n8"

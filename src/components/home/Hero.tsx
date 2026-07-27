@@ -3,7 +3,6 @@ import { gsap } from "gsap";
 import Button from "../shared/Button";
 
 const Hero: React.FC = () => {
-  const heroRef = useRef<HTMLDivElement>(null);
   const textRef = useRef<HTMLDivElement>(null);
   const mainImageRef = useRef<HTMLDivElement>(null);
   const egusiRef = useRef<HTMLDivElement>(null);
@@ -39,10 +38,7 @@ const Hero: React.FC = () => {
 
   return (
     <section className="relative min-h-[85vh] flex items-center px-gutter md:px-margin-desktop overflow-hidden">
-      <div
-        ref={heroRef}
-        className="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative"
-      >
+      <div className="max-w-container-max mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center relative">
         {/* Text Content */}
         <div ref={textRef} className="z-20 order-2 lg:order-1">
           <h1 className="font-display-lg text-display-lg-mobile md:text-display-lg text-on-background mb-6">
@@ -62,7 +58,6 @@ const Hero: React.FC = () => {
 
         {/* Images */}
         <div className="relative order-1 lg:order-2 h-[500px] md:h-[600px] flex items-center justify-center">
-          {/* Primary Focal Point: Jollof Rice */}
           <div
             ref={mainImageRef}
             className="relative z-10 w-4/5 aspect-square rounded-[40px] overflow-hidden shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-700"
@@ -74,7 +69,6 @@ const Hero: React.FC = () => {
             />
           </div>
 
-          {/* Layered Image: Egusi Soup */}
           <div
             ref={egusiRef}
             className="absolute -left-4 top-0 w-1/2 aspect-square rounded-3xl overflow-hidden shadow-xl -rotate-6 z-0 opacity-90 hover:rotate-0 transition-transform duration-700"
@@ -86,7 +80,6 @@ const Hero: React.FC = () => {
             />
           </div>
 
-          {/* Layered Image: Suya Skewers */}
           <div
             ref={suyaRef}
             className="absolute -right-8 -bottom-4 w-1/2 aspect-square rounded-3xl overflow-hidden shadow-xl rotate-12 z-20 hover:rotate-0 transition-transform duration-700"
